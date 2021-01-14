@@ -1,0 +1,29 @@
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}
+
+@mixin transition($property) {
+  -webkit-transition: $property;
+  -o-transition: $property;
+  transition: $property;
+}
+
+@mixin borders($w-left, $w-right, $w-bottom, $color) {
+  border-right: $w-right solid transparent;
+  border-bottom: $w-bottom solid $color;
+  border-left: $w-left solid transparent;
+}
+
+@mixin do-gradient($complex: true, $first, $second, $third: '') {
+  @if $complex {
+    background: -webkit-gradient(linear, left top, left bottom, from($first), color-stop(50%, $second), to($third));
+    background: -o-linear-gradient(top, $first 0%, $second 50%, $third 100%);
+    background: linear-gradient(180deg, $first 0%, $second 50%, $third 100%);
+  } @else {
+    background: -o-linear-gradient(top, $first 0%, $second 100%);
+    background: -webkit-gradient(linear, left top, left bottom, from($first), to($second));
+    background: linear-gradient(180deg, $first 0%, $second 100%);
+  }
+}
